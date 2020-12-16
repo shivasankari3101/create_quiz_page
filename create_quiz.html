@@ -281,6 +281,7 @@
     }
 
     #create_side_bar{
+    display: flex;
     position: fixed;
     bottom: 0;
     top:80vh;
@@ -288,7 +289,8 @@
     max-width: 100vw;
     overflow-x: auto;
     width: 100vw;
-    height: 20vh;
+    height: fit-content;
+    max-height: 40vh;
     background-color: #fff;
    }
    .create_quiz{
@@ -296,9 +298,6 @@
        top: 10vh;
        left:0;
        width: fit-content;
-   }
-   #slides{
-       width: 100vw;
    }
 
    .create_quiz .question{
