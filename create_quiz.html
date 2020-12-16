@@ -28,6 +28,21 @@
             z-index: 2;
         }
 
+        #title{
+            display: flex;
+            width: 50%;
+        }
+
+        .quiz_title{
+            margin-left: 3%;
+            padding: 0 4% 0 4%;
+            border: 0;
+           outline: 0;
+           height: 7vh;
+           border-radius: 0.25rem;
+           box-shadow:rgba(0, 0, 0, 0.15) 0px -4px 0px 0px inset;
+        }
+
 #brandname{
     padding-left: 3.5%;
     font-size: 2.5vw;
@@ -66,11 +81,14 @@
        top: 10vh;
        left:20vw;
        width: fit-content;
+       height:90vh;
+       max-height: 90vh;
+       overflow-y: auto;
        z-index: 0;
 }
 
 .create_quiz .question{
-    margin: 8vh 0 5vh 5vw;
+    margin: 8vh 0 5vh 0;
     padding: 0 4% 0 4%;
     border: 0;
     outline: 0;
@@ -117,12 +135,12 @@
     margin-top: 5vh;
    }
 .create_quiz  #options{
-    margin-left: 2vw;
+    margin-left: 10vw;
 }
 
 .create_quiz  #options input{
     padding: 0 4% 0 4%;
-    margin:5px 2vw 5px 2vw;
+    margin:5px 2vw 5px 0;
     height: 10vh;
     border: 0;
     outline: 0;
@@ -133,8 +151,8 @@
 .slide{
     width: 85%;
     min-height: 10vw;
-    margin:1rem 1rem 1rem 1rem;
-    padding: 3%;
+    margin:10px 10px 10px 10px;
+    padding: 10px;
     margin-bottom: 10px;
     transform: translate3d(1.2);
     background-color: rgba(0,0,0,0.1);
@@ -246,13 +264,29 @@
     color: rgba(0,0,0,0.7);
 }
 
+.quiz_number{
+    margin: 15px;
+}
 
 
 @media screen and (min-width: 577px) and (max-width:992px){
     .upload_image{
-      margin-left: 3%;
+      margin-left:auto;
+      margin-right: auto;
       width: 65vw;
       height: 35vw;
+  }
+
+  .create_quiz .container{
+      width: 80vw;
+  }
+
+  .points_col{
+      margin-top: 13vh;
+  }
+
+  .timer_col{
+      margin-bottom: 10vh;
   }
 
   .create_quiz .question::placeholder{
@@ -279,6 +313,7 @@
     #navbar_menu a{
         font-size: 0.7rem;
     }
+  
 
     #create_side_bar{
     display: flex;
@@ -295,13 +330,14 @@
    }
    .create_quiz{
        position: absolute;
-       top: 10vh;
+       top: 13vh;
        left:0;
        width: fit-content;
+       
    }
 
    .create_quiz .question{
-    margin: 5vw 10vw 4vw 10vw;
+    margin: 0;
     width: 80vw;
     height: 10vh;
     padding: 0 2% 0 2%;
@@ -347,10 +383,18 @@
     width: 100vw;;
 }
 
+.points_col{
+    margin-top: 5vh;
+}
+
 }
 @media screen and (max-width: 400px){
     .create_quiz .question::placeholder{
        font-size: 1rem !important;
+    }
+
+    .create_quiz #container_options{
+        font-size: 87%;
     }
 
     .create_quiz .question:-ms-input-placeholder{
@@ -367,6 +411,9 @@
         width: 80%;
     }
 
+    .create_quiz #container_options{
+        font-size: 70%;
+    }
     .create_quiz .question::placeholder{
        font-size: 0.8rem !important;
     }
@@ -378,6 +425,31 @@
    .create_quiz .question::-webkit-input-placeholder{
     font-size: 0.8rem !important;
    }
+}
+
+@media screen and (max-width:992px){
+    #add_slide{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 2rem;
+        color: rgba(0, 0, 0, 0.4);
+        padding: 0;
+        margin-left: 30px;
+        margin-right: 30px;
+        
+    }
+
+    .timer,.points{
+        border: none;
+        box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.1) ;
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 577px){
+    #navbar_menu{
+        width: 40%;
+    }
 }
         </style>
     </head>
@@ -421,7 +493,15 @@
         </svg>
             
         <nav id="navbar" class="desktop_navbar">
-            <h1 id="brandname">Just Quiz</h1>
+            <div id="title">
+                <h1 id="brandname">Just Quiz</h1>
+                <input type="text"
+                placeholder="Enter the quiz title"
+                onfocus='this.placeholder=""'
+                onblur='this.placeholder="Enter the quiz title"'
+                class="quiz_title">
+            </div>
+            
             <ul id="navbar_menu" class="before_menu">
                 <a href="#" id="exit">Exit</a>
                 <a href="#">Done</a>
@@ -457,6 +537,7 @@
         </div>
 
         <div class="create_quiz" style="display: none;">
+            <span class="quiz_number"></span>
             <input type="text" class="question" 
             placeholder="Click to start typing your question" 
             onfocus="this.placeholder = ''"
@@ -491,29 +572,42 @@
                 </div>
                 <div class="container" id="container_options">
                         <div class="row" id="options">
-                        <input class="col-5 option option1" 
+                        <div>
+                        <input class="offset-1 option option1" 
                         placeholder="option1"
                         onfocus="this.placeholder = ''"
                         onblur ="this.placeholder ='option1'"
                         required>
-
-                        <input class="offset-1 col-5 option option2" 
+                        <input type="checkbox" name="" id="">
+                       </div>
+                    
+                       <div>
+                        <input class="offset-1 option option2" 
                         placeholder="option2"
                         onfocus="this.placeholder = ''"
                         onblur ="this.placeholder ='option2'"
                         required>
+                        <input type="checkbox" name="" id="">
+                        </div>
+
                         </div>
                         <div class="row" id="options">
-
-                        <input class="col-5 option option3"
+                        
+                        <div>
+                        <input class="offset-1 option option3"
                          placeholder="option3(optional)"
                          onfocus="this.placeholder = ''"
                         onblur ="this.placeholder ='option3(optional)'">
-
-                        <input class="offset-1 col-5 option option4"
+                        <input type="checkbox" name="" id="">
+                        </div>
+ 
+                       <div>
+                        <input class="offset-1 option option4"
                          placeholder="option4(optional)"
                          onfocus="this.placeholder = ''"
                         onblur ="this.placeholder ='option4(optional)'">
+                        <input type="checkbox" name="" id="">
+                        </div>
                         
                     </div>
                 </div>
@@ -539,6 +633,7 @@
         var image_previews =document.getElementsByClassName("image_preview");
         var slide_pictures =document.getElementsByClassName("slide_picture");
         var slide_nos=document.getElementsByClassName("slide_no");
+        var quiz_numbers=document.getElementsByClassName("quiz_number");
         
         var n=1;
 
@@ -567,11 +662,17 @@
             $(slides).each(function(){
                 index=$(this).index();
                 slide_nos[index].innerHTML=i;
+                quiz_numbers[index].innerHTML=i+")";
                 i++;
             })
         }
 
-        $(document).ready(function(){          
+        $(document).ready(function(){ 
+            let mq =window.matchMedia('(max-width:992px)');
+            if(mq.matches){
+                var x = document.querySelector("#add_slide");
+                x.innerHTML="+";
+            }         
             add_slide();
             var pos=$(quizzes[1]).index()-1;
             console.log(pos);
