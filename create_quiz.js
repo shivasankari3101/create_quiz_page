@@ -24,6 +24,10 @@ var opt_imgs_prev_1 =document.getElementsByClassName("opt_img_prev_1");
 var opt_imgs_prev_2 =document.getElementsByClassName("opt_img_prev_2");
 var opt_imgs_prev_3 =document.getElementsByClassName("opt_img_prev_3");
 var opt_imgs_prev_4 =document.getElementsByClassName("opt_img_prev_4");
+var slide_opt_imgs_prev_1 =document.getElementsByClassName("slide_opt_img_prev_1");
+var slide_opt_imgs_prev_2 =document.getElementsByClassName("slide_opt_img_prev_2");
+var slide_opt_imgs_prev_3 =document.getElementsByClassName("slide_opt_img_prev_3");
+var slide_opt_imgs_prev_4 =document.getElementsByClassName("slide_opt_img_prev_4");
 
 var n=1;
 
@@ -99,6 +103,7 @@ $(document).ready(function(){
        $(quizzes[index]).clone()
         .appendTo("body");
         slide_numbers();
+        n++;
      })
 
     $(document).on('keyup','.question',function(){
@@ -143,23 +148,21 @@ $(document).ready(function(){
     })
 
     $(document).on('click','.remove_label',function(){
-        var index =$(this).parent().parent().parent().parent().parent().index();    
-           $(image_previews[index-pos]).attr('src',"images/placeholder-image.png");
-           $(slide_pictures[index-pos]).attr('src',"images/placeholder-image.png");
-           console.log(e.target.result);  
-           image_uploads[index-pos].files[0]="";  
-
+        var index =$(this).parent().parent().parent().parent().parent().index();
+        $(image_previews[index-pos]).attr('src', "images/placeholder-image.png");
+        $(slide_pictures[index-pos]).attr('src', "images/placeholder-image.png");     
+           $(image_uploads[index-pos]).val("");
     })
 
     $(document).on('change','.option_image_1',function(){
         var index =$(this).parent().parent().parent().parent().index();
         
         if (this.files && this.files[0]) {
-            alert(index);
            var reader = new FileReader();
 
            reader.onload = function(e) {
            $(opt_imgs_prev_1[index-pos]).attr('src', e.target.result);
+           $(slide_opt_imgs_prev_1[index-pos]).attr('src', e.target.result);
            console.log(e.target.result);
         }
 
@@ -171,11 +174,11 @@ $(document).ready(function(){
         var index =$(this).parent().parent().parent().parent().index();
         
         if (this.files && this.files[0]) {
-            alert(index);
            var reader = new FileReader();
 
            reader.onload = function(e) {
            $(opt_imgs_prev_2[index-pos]).attr('src', e.target.result);
+           $(slide_opt_imgs_prev_2[index-pos]).attr('src', e.target.result);
            console.log(e.target.result);
         }
 
@@ -187,11 +190,13 @@ $(document).ready(function(){
         var index =$(this).parent().parent().parent().parent().index();
         
         if (this.files && this.files[0]) {
-            alert(index);
+
            var reader = new FileReader();
 
            reader.onload = function(e) {
            $(opt_imgs_prev_3[index-pos]).attr('src', e.target.result);
+           $(slide_opt_imgs_prev_3[index-pos]).attr('src', e.target.result);
+
            console.log(e.target.result);
         }
 
@@ -203,11 +208,11 @@ $(document).ready(function(){
         var index =$(this).parent().parent().parent().parent().index();
         
         if (this.files && this.files[0]) {
-            alert(index);
            var reader = new FileReader();
 
            reader.onload = function(e) {
            $(opt_imgs_prev_4[index-pos]).attr('src', e.target.result);
+           $(slide_opt_imgs_prev_4[index-pos]).attr('src', e.target.result);
            console.log(e.target.result);
         }
 
