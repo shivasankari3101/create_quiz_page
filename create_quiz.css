@@ -208,6 +208,7 @@ border-radius: 50%;
 border:1px solid rgba(0,0,0,0.3);
 min-height: 30px;
 margin-top: 2%;
+word-break: break-all;
 }
 .slide_pic{
 border:1.2px solid rgba(0, 0, 0, 0.175);
