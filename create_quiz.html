@@ -5,485 +5,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
-       body{
-            font-family: 'Arimo', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: rgba(0,0,0,0.1);
-        }
-        #navbar{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #15141b;
-            color: #fff;
-            height: 10vh;
-            padding-top: 40px;
-            position: sticky;
-            padding-bottom: 30px;
-            top: 0;
-            left: 0;
-            z-index: 2;
-        }
-
-        #title{
-            display: flex;
-            align-items: center;
-            width: 50%;
-        }
-
-        .quiz_title{
-            margin-left: 3%;
-            padding: 0 4% 0 4%;
-            border: 0;
-           outline: 0;
-           height: 7vh;
-           border-radius: 0.25rem;
-           box-shadow:rgba(0, 0, 0, 0.15) 0px -4px 0px 0px inset;
-        }
-
-#brandname{
-    padding-left: 3.5%;
-    font-size: 2.5vw;
-    font-weight: bold;
-}
-#navbar_menu{
-    width:30%;
-}
-
-#navbar_menu a{
-    text-decoration: none;
-    margin: 0 3% 0 3%;
-    padding: 3% 10% 3% 10%;
-    border-radius: 5px;
-    color: rgba(0, 0, 0, 0.7);
-    font-weight: 700;
-    background-color: #d0f224;
-    text-transform: uppercase;
-}
-#create_side_bar{
-    position: sticky;
-    top: 11vh;
-    left: 0;
-    height: 90vh;
-    max-height: 90vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: 20vw;
-    background-color: #fff;
-    z-index: 1;
-    padding-bottom: 1vh;
-}
-
-.create_quiz{
-       position: absolute;
-       top: 10vh;
-       left:20vw;
-       width: fit-content;
-       height:90vh;
-       max-height: 90vh;
-       overflow-y: auto;
-       z-index: 0;
-}
-
-.create_quiz .question{
-    margin: 8vh 0 5vh 0;
-    padding: 0 4% 0 4%;
-    border: 0;
-    outline: 0;
-    width: 70vw;
-    height: 12vh;
-    border-radius: 0.25rem;
-    box-shadow:rgba(0, 0, 0, 0.15) 0px -4px 0px 0px inset;
-}
-
-   .create_quiz .question::placeholder{
-       font-size: 2rem !important;
-       text-align: center;
-   }
-
-   .create_quiz .question:-ms-input-placeholder{
-       font-size: 2rem !important;
-       text-align: center;
-   }
-
-   .create_quiz .question::-webkit-input-placeholder{
-       font-size: 2rem !important;
-       text-align: center;
-
-   }
-   a#exit{
-       background: transparent;
-       border:1.5px solid #d0f224;
-       color: #d0f224;
-   }
-
-   .row{
-       align-items: center;
-   }
-
-   .upload_image{
-       border-style: dashed;
-       border-color: rgba(0, 0, 0, 0.175);
-       height: 28vh;
-       width: 24vw;
-       position: relative;
-       
-   }
-   .create_quiz  #container_options{
-    margin-top: 5vh;
-   }
-.create_quiz  #options{
-    margin-left: 10vw;
-}
-
-.create_quiz  #options .option{
-    border: 0;
-    outline: 0;
-    overflow: hidden;
-} 
-.slide{
-    width: 85%;
-    min-height: 10vw;
-    margin:10px 10px 10px 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    transform: translate3d(1.2);
-    background-color: rgba(0,0,0,0.1);
-    box-shadow:rgba(0, 0, 0, 0.15) 3px 3px 3px;
-    font-size: 70%;
-
-}
-
-.slide:hover{
-    background-color: #f5f5f5;
-    box-shadow:rgba(0, 0, 0, 0.15) 5px 5px 5px;
-
-}
-
-#slides{
-    display: flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    align-items: center;
-}
-
-#add_slide{
-    margin:7.5vw;
-    margin-top: 2vh;
-    padding: 0 5% 0 5%;
-    border: 0;
-    outline: 0;
-    background-color: #d0f224;
-    box-shadow:rgba(0, 0, 0, 0.15) 0px -4px 0px 0px inset;
-    min-width: 50px;
-    min-height: 50px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 2rem;
-    color: rgba(0, 0, 0, 0.4);
-    padding: 0;
-    margin-right: 30px;
-        
-    
-
-}
-
-.profile_bg{
-    position: fixed;
-    bottom: 0vh;
-    right: 0vh;
-    z-index: -2000;
-    height: 100vh;
-}
-
-.slide_icon{
-    background-color: #fff;
-    color: rgba(0,0,0,0.7);
-    width: 7px;
-    height: 7px;
-    padding: 5px;
-    border-radius: 50%;
-}
-.slide_question{
-    border:1px solid rgba(0,0,0,0.3);
-    min-height: 30px;
-    margin-top: 2%;
-}
-.slide_pic{
-    border:1.2px solid rgba(0, 0, 0, 0.175);
-    border-style: dashed;
-    height: 34px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-}
-.slide_options .row{
-    flex-grow: 1;
-    align-items: stretch;
-}
-.slide_options .row div{
-    word-wrap: break-word;
-    min-height: 15px;
-    max-width: 50%;
-    margin:5px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid rgba(0,0,0,0.7);
-}
-
-#row_columns{
-    margin-bottom: 10vh;
-}
-
-.image_upload{
-    margin-top: 20px;
-}
-.image_preview{
-    width: 100%;
-    height: 100%;
-}
-
-.slide_picture{
-    width: 100%;
-    height: 100%;
-}
-
-.image_preview:hover{
-    transform: scale(1.5);
-}
-
-.timer,.points{
-    margin-left: 40%;
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    border: 2px solid #d0f224 ;
-    border-style:double;
-    box-shadow:4px 4px 4px 4px #d0f224;
-    outline: none;
-    color: rgba(0,0,0,0.7);
-}
-
-.quiz_number{
-    margin: 15px;
-}
-
-.option_div{
-    display: flex;
-    align-items: center;
-    padding: 0 5px 0 4%;
-    margin:5px 2vw 5px 0;
-    height: 10vh;
-    border: 0;
-    outline: 0;
-    border-radius: 0.25rem;
-    background-color: #fff;
-    box-shadow:rgba(0, 0, 0, 0.15) 0px -4px 0px 0px inset;
-}
-
-.option_checkbox{
-    width: 40%;
-    height: 40%;   
-}
-
-
-@media screen and (max-width:992px){
-    .timer,.points{
-        border: none;
-        box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.1) ;
-    }
-
-    
-}
-
-
-
-@media screen and (min-width: 577px) and (max-width:992px){
-    .upload_image{
-      margin-left:auto;
-      margin-right: auto;
-      width: 65vw;
-      height: 35vh;
-  }
-
-  .create_quiz .container{
-      width: 80vw;
-  }
-
-  .points_col{
-      margin-top: 13vh;
-  }
-
-  .timer_col{
-      margin-bottom: 10vh;
-  }
-
-  .create_quiz .question::placeholder{
-       font-size: 1.3rem !important;
-    }
-
-    .create_quiz .question:-ms-input-placeholder{
-    font-size: 1.3rem !important;
-   }
-
-   .create_quiz .question::-webkit-input-placeholder{
-    font-size: 1.3rem !important;
-   }
-}
-
-@media screen and (max-width: 800px) and (min-width: 577px){
-    #navbar_menu{
-        width: 40%;
-    }
-}
-
-@media screen and (max-width: 580px){
-    #brandname{
-        font-size: 1.3em;
-    }
-
-    #navbar_menu a:nth-child(1){
-        display: none;
-    }
-}
-
-@media screen and (max-width: 576px){ 
-
-    #create_side_bar{
-    display: flex;
-    position: fixed;
-    top: 80vh;
-    left: 0vh;
-    max-width: 100vw;
-    width: 100vw;
-    overflow-x: auto;
-    min-height: 20vh;
-    height: fit-content;
-    max-height: 20vh;
-    overflow-y: auto;
-    background-color: #fff;
-    padding-top: 10vh;
-   }
-
-   #add_slide{
-       margin-top: -2vh;
-   }
-   .create_quiz{
-       position: absolute;
-       top: 13vh;
-       left:0;
-       width: fit-content;
-       
-   }
-
-   .create_quiz .question{
-    margin: 0;
-    width: 80vw;
-    height: 10vh;
-    padding: 0 2% 0 2%;
-}
-
-    .create_quiz .question::placeholder{
-       font-size: 1.175rem !important;
-       text-align: center;
-       
-   }
-
-   .create_quiz .question:-ms-input-placeholder{
-    font-size: 1.175rem !important;
-       text-align: center;
-   }
-
-   .create_quiz .question::-webkit-input-placeholder{
-    font-size: 1.175rem !important;
-       text-align: center;
-   }
-  .upload_image{
-    margin: 10vw 10vw 18vw 14vw;
-    width: 61vw;
-    height: 28vh;
-  }
-
-  .create_quiz  #container_options{
-     margin-bottom: 25vh;
-}
-
-.slide{
-    width: 40vw;
-    min-width: 40vw;
-    min-height: 20vh;
-}
-
-#slides{
-    display: flex;
-    flex-direction: row;
-}
-
-#profile_bg{
-    width: 100vw;;
-}
-
-.points_col{
-    margin-top: 5vh;
-}
-
-}
-@media screen and (max-width: 400px){
-    .create_quiz .question::placeholder{
-       font-size: 1rem !important;
-    }
-
-    .create_quiz #container_options{
-        font-size: 87%;
-    }
-
-    .create_quiz .question:-ms-input-placeholder{
-    font-size: 1rem !important;
-   }
-
-   .create_quiz .question::-webkit-input-placeholder{
-    font-size: 1rem !important;
-   }
-}
-
-@media screen and (max-width: 310px){
-    #navbar_menu {
-       width: 40%;
-    }
-
-    .quiz_title{
-        width: 100px;
-    }
-
-    .create_quiz #container_options{
-        font-size: 70%;
-    }
-    .create_quiz .question::placeholder{
-       font-size: 0.8rem !important;
-    }
-
-    .create_quiz .question:-ms-input-placeholder{
-    font-size: 0.8rem !important;
-   }
-
-   .create_quiz .question::-webkit-input-placeholder{
-    font-size: 0.8rem !important;
-   }
-}
-
-
-
-
-
-
-        </style>
-    </head>
-    <body>
+        <link rel="stylesheet" href="./create_quiz.css">
+        <script src="./create_quiz.js"></script>
+       </head>
+       <body>
         
         <svg class="profile_bg" viewBox="0 0 1440 1024" fill="rgba(0,0,0,0)" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0)">
@@ -589,7 +114,9 @@
                     <div class="col-lg-4 col-12 text-center" id="image_col">
                         <div class="upload_image text-center">
                             <img class="image_preview" src="images/placeholder-image.png" >
+                            <label class="upload_label">Upload image</label>
                             <input type="file" accept="image/*" name="image_file" class="image_upload">
+                            <label class="remove_label">Remove image</label>
                         </div>
                     </div>
                     <div class="col-lg-4 points_col">
@@ -603,41 +130,53 @@
                 </div>
                 <div class="container" id="container_options">
                         <div class="row" id="options">
-                        <div class="option_div col-5">
+                        <div class="option_div col-lg-5">
+                        <img src="images/placeholder-image.png" class="opt_img_prev_1 opt_prev">
                         <input class="option option1" 
                         placeholder="option1"
                         onfocus="this.placeholder = ''"
                         onblur ="this.placeholder ='option1'"
                         required>
                         <input type="checkbox" name="" class="option_checkbox">
+                        <input type="file" accept="image/*" class="option_image option_image_1" title="Upload an image for option">
+                        <i class="fa fa-picture-o option_image_placeholder" aria-hidden="true"></i>
                        </div>
                     
-                       <div class="option_div col-5">
+                       <div class="option_div col-lg-5">
+                        <img src="images/placeholder-image.png" class="opt_img_prev_2 opt_prev">
                         <input class="option option2" 
                         placeholder="option2"
                         onfocus="this.placeholder = ''"
                         onblur ="this.placeholder ='option2'"
                         required>
                         <input type="checkbox" name="" class="option_checkbox">
+                        <input type="file" accept="image/*" class="option_image option_image_2" title="Upload an image for option">
+                        <i class="fa fa-picture-o option_image_placeholder" aria-hidden="true"></i>
                         </div>
 
                         </div>
                         <div class="row" id="options">
                         
-                        <div class="option_div col-5">
+                        <div class="option_div col-lg-5">
+                        <img src="images/placeholder-image.png" class="opt_img_prev_3 opt_prev">
                         <input class="option option3"
                          placeholder="option3(optional)"
                          onfocus="this.placeholder = ''"
                         onblur ="this.placeholder ='option3(optional)'">
                         <input type="checkbox" name="" class="option_checkbox">
+                        <input type="file" accept="image/*" class="option_image option_image_3" title="Upload an image for option">
+                        <i class="fa fa-picture-o option_image_placeholder" aria-hidden="true"></i>
                         </div>
  
-                       <div class="option_div col-5">
+                       <div class="option_div col-lg-5">
+                        <img src="images/placeholder-image.png" class="opt_img_prev_4 opt_prev">
                         <input class="option option4"
                          placeholder="option4(optional)"
                          onfocus="this.placeholder = ''"
                         onblur ="this.placeholder ='option4(optional)'">
                         <input type="checkbox" name="" class="option_checkbox">
+                        <input type="file" accept="image/*" class="option_image option_image_4" title="Upload an image for option">
+                        <i class="fa fa-picture-o option_image_placeholder" aria-hidden="true"></i>
                         </div>
                         
                     </div>
@@ -647,145 +186,6 @@
         </div>
     </form>
     </body>
-    <script>
-        var slides= document.getElementsByClassName("slide");
-        var quizzes =document.getElementsByClassName("create_quiz");
-        var slide_nos =document.getElementsByClassName("slide_no");
-        var questions =document.getElementsByClassName("question");
-        var slide_questions =document.getElementsByClassName("slide_question");
-        var options1 =document.getElementsByClassName("option1");
-        var options2 =document.getElementsByClassName("option2");
-        var options3 =document.getElementsByClassName("option3");
-        var options4 =document.getElementsByClassName("option4");
-        var slide_options1=document.getElementsByClassName("slide_option1");
-        var slide_options2=document.getElementsByClassName("slide_option2");
-        var slide_options3=document.getElementsByClassName("slide_option3");
-        var slide_options4=document.getElementsByClassName("slide_option4");
-        var image_uploads =document.getElementsByClassName("image_upload");
-        var image_previews =document.getElementsByClassName("image_preview");
-        var slide_pictures =document.getElementsByClassName("slide_picture");
-        var slide_nos=document.getElementsByClassName("slide_no");
-        var quiz_numbers=document.getElementsByClassName("quiz_number");
-        
-        var n=1;
-
-       
-       
-        function display_block(x){
-                for(var i=1;i<quizzes.length;i++){
-                    quizzes[i].style.display ="none";
-                }
-                quizzes[x].style.display ="block";
-
-        }
-
-        function add_slide(){
-            $(slides[0]).clone()
-                .css('display','block')
-                .appendTo("#slides");
-            $(quizzes[0]).clone()
-                .appendTo("body");
-            display_block(n);
-            n++;
-        }
-
-        function slide_numbers(){
-            i=0;
-            $(slides).each(function(){
-                index=$(this).index();
-                slide_nos[index].innerHTML=i;
-                quiz_numbers[index].innerHTML=i+")";
-                i++;
-            })
-        }
-
-        $(document).ready(function(){ 
-            let sm =window.matchMedia('(max-width:700px)');
-            let xsm =window.matchMedia('(max-width:320px)');
-            if(sm.matches){
-                var x = document.querySelector("#brandname");
-                x.innerHTML="JQ";
-            }         
-            if(xsm.matches){
-                var x =document.querySelector(".quiz_title");
-                x.placeholder="Quiz title";
- 
-            }
-            add_slide();
-            var pos=$(quizzes[1]).index()-1;
-            console.log(pos);
-            slide_numbers();            
-
-            $("#add_slide").click(function(){
-                add_slide();
-                slide_numbers();
-            }) 
-            $(document).on('click','.slide',function(){
-                var index=$(this).index();
-                display_block(index);
-            })
-
-             $(document).on('click','.fa-trash',function(){
-                   var index = $(this).parent().parent().parent().index();
-                   slides[index].remove();
-                  quizzes[index].remove();
-                  n--;
-                  slide_numbers();
-            })
-
-
-             $(document).on('click','.fa-clone',function(){
-                   var index = $(this).parent().parent().parent().index();
-                   $(slides[index]).clone()
-                .css('display','block')
-                .appendTo("#slides");
-               $(quizzes[index]).clone()
-                .appendTo("body");
-                slide_numbers();
-             })
-
-            $(document).on('keyup','.question',function(){
-                var index =$(this).parent().index();
-                slide_questions[index-pos].innerHTML=questions[index-pos].value;
-            })
-
-            $(document).on('keyup','.option1',function(){
-                var index =$(this).parent().parent().parent().parent().index();
-                slide_options1[index-pos].innerHTML=options1[index-pos].value;
-            })
-
-            $(document).on('keyup','.option2',function(){
-                var index =$(this).parent().parent().parent().parent().index();
-                slide_options2[index-pos].innerHTML=options2[index-pos].value;
-            })
-
-            $(document).on('keyup','.option3',function(){
-                var index =$(this).parent().parent().parent().parent().index();
-                slide_options3[index-pos].innerHTML=options3[index-pos].value;
-            })
-
-            $(document).on('keyup','.option4',function(){
-                var index =$(this).parent().parent().parent().parent().index();
-                slide_options4[index-pos].innerHTML=options4[index-pos].value;
-            })
-
-            $(document).on('change','.image_upload',function(){
-                var index =$(this).parent().parent().parent().parent().parent().index();
-                if (this.files && this.files[0]) {
-                   var reader = new FileReader();
-    
-                   reader.onload = function(e) {
-                   $(image_previews[index-pos]).attr('src', e.target.result);
-                   $(slide_pictures[index-pos]).attr('src', e.target.result);
-                   console.log(e.target.result);
-                }
-    
-                reader.readAsDataURL(this.files[0]); 
-                }
-
-            })                 
-        })        
-        </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
