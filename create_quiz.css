@@ -206,8 +206,9 @@ border-radius: 50%;
 }
 .slide_question{
 border:1px solid rgba(0,0,0,0.3);
-min-height: 30px;
+height: 30px;
 margin-top: 2%;
+word-wrap: normal;
 overflow: hidden;
 }
 .slide_pic{
@@ -226,9 +227,8 @@ align-items: stretch;
 .slide_option{
 display: flex;
 align-items: stretch;
-min-height: 15px;
-max-height: fit-content;
-max-width: 50%;
+height: 15px;
+width: 50%;
 margin:5px;
 margin-left: auto;
 margin-right: auto;
